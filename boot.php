@@ -7,4 +7,4 @@
 <link rel="shortcut icon" href="https://techhunk.pk/cdn/shop/files/logo_1.png?v=1756293749&width=140" type="image/x-icon">
 <link rel="stylesheet" href="./styles.css">
 <script defer src="./app.js"></script>
-   <title>Techhike</title>
+   <title>TechHunk</title>
