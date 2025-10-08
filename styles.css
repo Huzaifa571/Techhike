@@ -19,3 +19,41 @@
     transform: translateX(-100%);
     transition: all 0.3s;
 }
+
+
+       .rating i {
+      color: gold;
+    }
+
+    .tpcp-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    background: #eef2ff;
+    color: #364fc7;
+    font-weight: 800;
+    font-size:10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    z-index: 2;
+}
+
+.products{
+    scroll-behavior: smooth;
+}
+.products-chevron{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    position: absolute;
+    cursor: pointer;
+}
+
+.rounded{
+    width: 50px;
+    height: 50px;
+    background-color:white;
+    border:1px solid black;
+    position: relative;
+
+}

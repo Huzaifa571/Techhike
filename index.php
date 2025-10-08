@@ -1,9 +1,21 @@
+<?php 
+      session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <?php include './boot.php'?>
+     
+      <style>
+       .products ::-webkit-scrollbar {
+
+        width:0;
+        height: 0;
+
+        }
+      </style>
    
 </head>
 <body>
@@ -47,29 +59,7 @@
 
          <div class="container-fluid position-relative p-0">
 
-         <nav class="d-flex bg-transparent Custom-navbar text-white p-sm-3 p-2 fs-6  position-absolute rounded-4 z-3 justify-content-lg-center justify-content-between align-items-center gap-5">
-               <i class="bi bi-list list-icon fs-2 d-block d-lg-none"></i>
-             <img src="https://techhunk.pk/cdn/shop/files/logo_1.png?v=1756293749&width=140" width="100px" alt="">
-
-             <ul class="list-unstyled d-none d-lg-flex gap-4 m-0">
-
-                   <li>Home</li>
-                   <li>Earbuds</li>
-                   <li>Smart Watches</li>
-                   <li>Projectors</li>
-                   <li>Accessories</li>
-                   <li>Support</li>
-             </ul>
-
-             <div class="d-flex gap-4">
-                <i class="bi bi-search  fs-4"></i>
-                <i class="bi bi-person  fs-4"></i>
-                <i class="bi bi-bag  fs-4"></i>
-             </div>
-
-
-         </nav>
-             
+          <?php include "./navbar.php"?>
                  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -97,6 +87,66 @@
         
     
 </div>
+           
+      <?php include "./arrivals.php"?>
+          
+  <div class="container position-relative ">
+         <h2 class="text-uppercase text-center d-flex justify-content-center align-items-center fw-bold gap-2 my-4">Best <span class="text-info">Sellers</span></h2>
+            
+           <i class="bi bi-chevron-left fs-6 rounded-circle top-50 products-chevron left z-3 d-flex justify-content-center align-items-center " style="left:-2px;"></i>
+           <i class="bi bi-chevron-right fs-6 rounded-circle  products-chevron right z-3 d-flex justify-content-center align-items-center "style="right:0px; top:50%;" ></i>
+           
+         <div class="d-flex products gap-4  overflow-x-scroll">
+
+               <?php
+                   include "./config.php";
+                   $select = "SELECT * FROM products";
+                   $result = mysqli_query($connection,$select);
+                   foreach($result as $row){
+               ?>
+        <div class="card flex-shrink-0  p-3 shadow border border-dark rounded-4" style="width:280px;">
+            <div class="d-flex h-100 flex-column justify-content-between">
+               <p class="tpcp-card__badge text-uppercase">
+                <?php echo $row['title'] ?>
+               </p>
+          <img src="./products_images/<?php echo $row['image'] ?>" width="100%" class="position-relative" alt="">
+          <h5 class=" m-0">
+            <?php echo $row['name'] ?>
+          </h5>
+          <p class="m-0 text-secondary pro-desc text-uppercase" style="font-size:0.7rem"> 
+            <?php echo $row['description'] ?>
+          </p>
+           <div class="d-flex m-0 justify-content-between align-items-center mb-2">
+            
+              <div class="rating me-3">
+          <i class="bi bi-star-fill "></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-half"></i>
+           <span class="fw-bold">4.8</span>
+            </div>
+          
+            <div class=" rounded-circle  " style="width:10px; height:10px; background:<?php echo $row['color'] ?>"></div>
+           </div>
+
+          <div class="d-flex m-0 justify-content-between align-items-center">
+               <h5><?php echo $row['price'] ?></h5>
+             <a href="./single-products.php?data=<?php echo urlencode(json_encode($row))?>" class="btn semibold text-info">
+                 Buy Now
+                   </a>
+         </div>
+            </div>
+
+      </div>
+          <?php
+                   }
+          ?>
+
+          
+   </div>
+ </div>
+
      
 </body>
 </html>
